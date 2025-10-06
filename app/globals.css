@@ -1,0 +1,14 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body { @apply bg-slate-50 text-slate-900; }
+.card { @apply bg-white rounded-2xl border shadow-sm; }
+.btn { @apply inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium bg-slate-900 text-white; }
+.btn.secondary { @apply bg-slate-100 text-slate-900; }
+.badge { @apply inline-flex items-center rounded-xl px-2 py-0.5 text-xs bg-slate-100; }
+.input { @apply w-full rounded-xl border px-3 py-2; }
+.label { @apply text-sm text-slate-500; }
+.tabs { @apply grid grid-cols-2 md:grid-cols-8 gap-2; }
+.tab { @apply px-3 py-2 rounded-xl text-sm bg-slate-100 text-slate-700 text-center; }
+.tab.active { @apply bg-slate-900 text-white; }
