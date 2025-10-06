@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* --- Netflix-style dark theme --- */
 :root {
   --bg: #0b0b0f;
@@ -10,41 +6,31 @@
   --muted: #9aa0aa;
   --accent: #e50914; /* Netflix red */
 }
+html, body { background: var(--bg); color: var(--ink); }
+.card { background: var(--panel); border-color: #1e1e27; box-shadow: none; }
+.tab { background: #1a1a22; color: var(--muted); }
+.tab.active { background: var(--ink); color: #111; }
+.btn { background: var(--accent); }
+.btn.secondary { background:#1a1a22; color: var(--ink); }
 
-body {
-  @apply bg-[color:var(--bg)] text-[color:var(--ink)];
+/* Horizontal “row” like Netflix */
+.row-scroll {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 15rem;
+  gap: 12px; overflow-x: auto; padding-bottom: 6px;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
 }
+.row-scroll > * { scroll-snap-align: start; }
 
-.card {
-  @apply rounded-2xl border shadow-sm;
-  background: var(--panel);
-  border-color: #1e1e27;
+/* Poster card hover */
+.poster {
+  border-radius: 14px; overflow: hidden; position: relative; background: #0e0e14;
+  border: 1px solid #1f1f2a;
 }
-
-.btn {
-  @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium;
-  background: var(--accent);
-  color: white;
+.poster img { display:block; width:100%; height:220px; object-fit:cover; }
+.poster .meta {
+  position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end;
+  background: linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,0));
+  color: #fff; padding:10px; opacity:.0; transition: opacity .2s ease;
 }
-
-.btn.secondary {
-  background: #1a1a22;
-  color: var(--ink);
-}
-
-.badge {
-  @apply inline-flex items-center rounded-xl px-2 py-0.5 text-xs;
-  background: #1f1f2a;
-  color: #cdd2db;
-}
-
-.tab {
-  @apply px-3 py-2 rounded-xl text-sm text-center;
-  background: #1a1a22;
-  color: var(--muted);
-}
-
-.tab.active {
-  background: var(--ink);
-  color: #111;
-}
+.poster:hover .meta { opacity:1; }
+.badge { background:#1f1f2a; color:#cdd2db; }
