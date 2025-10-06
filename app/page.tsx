@@ -69,7 +69,7 @@ export default function Page(){
   
   return (
     <div className="min-h-screen w-full p-6">
-      <div className="max-w-7xl mx-auto grid gap-6">
+     <div className="max-w-7xl mx-auto grid gap-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-12 w-12 rounded-2xl bg-slate-900 text-white grid place-content-center font-bold">PL</div>
