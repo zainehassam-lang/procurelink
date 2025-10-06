@@ -1,4 +1,5 @@
-
+import Carousel from '@/components/Carousel';
+import PosterCard from '@/components/PosterCard';
 'use client';
 import { useMemo, useState } from 'react';
 import Section from '@/components/Section';
@@ -91,32 +92,44 @@ export default function Page(){
           ))}
         </div>
 
-        {tab==='overview' && (
-          <div className="grid md:grid-cols-3 gap-4">
-            <div className="card p-5"><Section title="Direct" />
-              <p className="text-sm text-slate-500">Approved suppliers: {suppliers.filter(s=>s.category==='Direct'&&s.status==='Approved').length}</p>
-              <p className="text-sm text-slate-500">Open RFQs: {rfqs.filter(r=>r.category==='Direct'&&r.status==='Open').length}</p>
-            </div>
-            <div className="card p-5"><Section title="Indirect" />
-              <p className="text-sm text-slate-500">Approved suppliers: {suppliers.filter(s=>s.category==='Indirect'&&s.status==='Approved').length}</p>
-              <p className="text-sm text-slate-500">Open RFPs: {rfqs.filter(r=>r.category==='Indirect'&&r.status==='Open').length}</p>
-            </div>
-            <div className="card p-5"><Section title="SLA Trend" />
-              <div className="h-40">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={[
-                    { month:'2025-06', onTime:92, sla:90 },
-                    { month:'2025-07', onTime:94, sla:92 },
-                    { month:'2025-08', onTime:95, sla:94 },
-                    { month:'2025-09', onTime:96, sla:95 },
-                  ]}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" /><YAxis /><Tooltip /><Legend />
-                    <Line type="monotone" dataKey="onTime" /><Line type="monotone" dataKey="sla" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
+       {tab==='overview' && (
+  <div className="grid gap-6">
+    {/* HERO */}
+    <div className="rounded-2xl relative overflow-hidden" style={{background:'linear-gradient(90deg,#111,#1a1a22)'}}>
+      <div className="p-6 md:p-10">
+        <div className="text-2xl md:text-3xl font-bold">ProcureLink</div>
+        <div className="text-sm md:text-base text-slate-300 mt-1">
+          Invite suppliers, collect bids, evaluate, award, and monitor — all in one place.
+        </div>
+        <div className="mt-4 flex gap-2">
+          <button className="btn">+ Create RFQ</button>
+          <button className="btn secondary">Invite Supplier</button>
+        </div>
+      </div>
+    </div>
+
+    {/* ROW 1 */}
+    <div>
+      <h2 className="text-lg font-semibold mb-2">Trending RFQs</h2>
+      <Carousel>
+        {rfqs.slice(0,6).map(r=>(
+          <PosterCard key={r.id} title={r.title} subtitle={r.status} />
+        ))}
+      </Carousel>
+    </div>
+
+    {/* ROW 2 */}
+    <div>
+      <h2 className="text-lg font-semibold mb-2">Top Suppliers</h2>
+      <Carousel>
+        {suppliers.slice(0,6).map(s=>(
+          <PosterCard key={s.id} title={s.name} subtitle={s.category} />
+        ))}
+      </Carousel>
+    </div>
+  </div>
+)}
+
           </div>
         )}
 
