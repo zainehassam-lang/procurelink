@@ -66,7 +66,7 @@ export default function Page(){
   }).sort((a,b)=>b.score-a.score), [suppliers, criteria]);
 
   const inviteLink = `https://procurelink.example/invite/${id('org')}`;
-
+  
   return (
     <div className="min-h-screen w-full p-6">
       <div className="max-w-7xl mx-auto grid gap-6">
