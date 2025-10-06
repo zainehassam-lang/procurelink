@@ -1,14 +1,50 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body { @apply bg-slate-50 text-slate-900; }
-.card { @apply bg-white rounded-2xl border shadow-sm; }
-.btn { @apply inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm font-medium bg-slate-900 text-white; }
-.btn.secondary { @apply bg-slate-100 text-slate-900; }
-.badge { @apply inline-flex items-center rounded-xl px-2 py-0.5 text-xs bg-slate-100; }
-.input { @apply w-full rounded-xl border px-3 py-2; }
-.label { @apply text-sm text-slate-500; }
-.tabs { @apply grid grid-cols-2 md:grid-cols-8 gap-2; }
-.tab { @apply px-3 py-2 rounded-xl text-sm bg-slate-100 text-slate-700 text-center; }
-.tab.active { @apply bg-slate-900 text-white; }
+
+/* --- Netflix-style dark theme --- */
+:root {
+  --bg: #0b0b0f;
+  --panel: #121219;
+  --ink: #e6e6f0;
+  --muted: #9aa0aa;
+  --accent: #e50914; /* Netflix red */
+}
+
+body {
+  @apply bg-[color:var(--bg)] text-[color:var(--ink)];
+}
+
+.card {
+  @apply rounded-2xl border shadow-sm;
+  background: var(--panel);
+  border-color: #1e1e27;
+}
+
+.btn {
+  @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium;
+  background: var(--accent);
+  color: white;
+}
+
+.btn.secondary {
+  background: #1a1a22;
+  color: var(--ink);
+}
+
+.badge {
+  @apply inline-flex items-center rounded-xl px-2 py-0.5 text-xs;
+  background: #1f1f2a;
+  color: #cdd2db;
+}
+
+.tab {
+  @apply px-3 py-2 rounded-xl text-sm text-center;
+  background: #1a1a22;
+  color: var(--muted);
+}
+
+.tab.active {
+  background: var(--ink);
+  color: #111;
+}
