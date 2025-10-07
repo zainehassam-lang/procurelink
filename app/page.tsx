@@ -62,32 +62,39 @@ export default function Page(){
 
   const ranked = useMemo(()=> suppliers.map(s=>{
     const score = calcWeighted(criteria,4,4,4,3.5,4, s.status==='Approved'?4:3, s.bbbeeLevel? (6-Math.min(5, Number(s.bbbeeLevel)))*0.8+2 : 3);
-    return { s, score };
-  }).sort((a,b)=>b.score-a.score), [suppliers, criteria]);
+const inviteLink = `https://procurelink.example/invite/${id('org')}`;
 
-  const inviteLink = `https://procurelink.example/invite/${id('org')}`;
-  
-  return (
-    <div className="min-h-screen w-full p-6">
-     <div className="max-w-7xl mx-auto grid gap-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-12 w-12 rounded-2xl bg-slate-900 text-white grid place-content-center font-bold">PL</div>
-            <div>
-              <h1 className="text-2xl md:text-3xl font-bold">ProcureLink</h1>
-              <p className="text-sm text-slate-500 -mt-1">Direct & Indirect procurement collaboration</p>
-            </div>
+return (
+  <div className="min-h-screen w-full p-6">
+    <div className="max-w-7xl mx-auto grid gap-6">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="h-12 w-12 rounded-2xl bg-slate-900 text-white grid place-content-center font-bold">
+            PL
           </div>
-          <div className="flex items-center gap-2">
-            <select className="input w-[160px]" value={role} onChange={e=>setRole(e.target.value as any)}>
-              <option>Admin</option><option>Buyer</option><option>Approver</option><option>Supplier</option>
-            </select>
-            <button className="btn">+ Quick Add</button>
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold">ProcureLink</h1>
+            <p className="text-sm text-slate-500 -mt-1">
+              Direct & Indirect procurement collaboration
+            </p>
           </div>
         </div>
 
-        <div className="tabs">
-          {['overview','suppliers','rfqs','evals','risks','performance','contracts','settings'].map(t=>(
+        <div className="flex items-center gap-2">
+          <select
+            className="input w-[160px]"
+            value={role}
+            onChange={(e) => setRole(e.target.value as any)}
+          >
+            <option>Admin</option>
+            <option>Buyer</option>
+            <option>Approver</option>
+            <option>Supplier</option>
+          </select>
+          <button className="btn">+ Quick Add</button>
+        </div>
+      </div>
+
             <button key={t} className={'tab '+(tab===t?'active':'')} onClick={()=>setTab(t as any)}>{t.toString().toUpperCase()}</button>
           ))}
         </div>
