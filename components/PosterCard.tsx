@@ -6,9 +6,9 @@ export default function PosterCard({
   title: string; subtitle?: string; badge?: string; imgSrc: string; actions?: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl overflow-hidden relative bg-[#1a1a22] border border-[#2a2a34] min-w-[240px] snap-start">
-      <Image src={imgSrc} alt={title} width={320} height={200} />
-      <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/70 to-transparent text-white">
+    <div className="poster">
+      <Image src={imgSrc} alt={title} width={320} height={220} />
+      <div className="meta">
         {subtitle && <div className="text-xs opacity-90">{subtitle}</div>}
         <div className="text-sm font-semibold">{title}</div>
         <div className="flex items-center justify-between mt-2">
